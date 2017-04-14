@@ -21,5 +21,6 @@ api.delete('/user/:email',userCtrl.userDelete)
 api.post('/work', workCtrl.createWork)
 api.get('/work', workCtrl.getWorks)
 api.put('/work/:workId', workCtrl.workUpdate)
+api.delete('/work/:workId', workCtrl.workDelete)
 
 module.exports = api;

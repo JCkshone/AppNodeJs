@@ -48,18 +48,25 @@ function workUpdate(req, res) {
     })
 }
 
-function workDelete(){
-  let workId=req.params.workId
-  WorkInfo.find({_id:workId},(err,work)=>{
-    if(err) return res.status(500).send()
+function workDelete(req, res) {
+    let workId = req.params.workId
+    WorkInfo.find({
+        _id: workId
+    }, (err, work) => {
+        if (err)
+            return res.status(500).send()
 
-    work.remove((err)=>{
+        work.remove((err) => {
+            if (err)
+                return res.status(500).send({message:`ERROR: error al eliminar el trabajo:${err}`})
 
+            res.status(200).send({message:'Trabajo eliminado correctamente.'})
+        })
     })
-  })
 }
 module.exports = {
     createWork,
     getWorks,
-    workUpdate
+    workUpdate,
+    workDelete
 }
